@@ -2561,7 +2561,7 @@ async function submitStepForm(id){
 
   // Bouton de soumission — afficher chargement
   var btnSubmit = document.querySelector('#fs3-'+id+' .btn-submit-form');
-  if(btnSubmit){ btnSubmit.disabled=true; btnSubmit.textContent='⏳ Envoi en cours...'; }
+  if(btnSubmit){ btnSubmit.disabled=true; btnSubmit.textContent='⏳ Envoi en cours... Redirection vers le paiement'; }
 
   var prenom=document.getElementById('f-prenom-'+id).value.trim();
   var nom=document.getElementById('f-nom-'+id).value.trim();
@@ -2651,14 +2651,23 @@ async function submitStepForm(id){
       console.warn('EmailJS :', emailErr);
     }
 
-    // Succès
+    // Succès — redirection directe vers la page de paiement des frais de traitement
     var dossier=generateDossierNum();
-    document.getElementById('dossier-num-'+id).textContent=dossier;
-    document.getElementById('fc-'+id).style.display='none';
-    document.getElementById('sp-'+id).classList.add('show');
-    setTimeout(function(){
-      document.getElementById('sp-'+id).scrollIntoView({behavior:'smooth',block:'nearest'});
-    },50);
+    // Stocker le numéro de dossier pour référence (sessionStorage)
+    try{ sessionStorage.setItem('pec_dossier', dossier); }catch(e){}
+    // Redirection immédiate vers le lien de paiement
+    var payUrl = SITE_CONFIG.lien_paiement_traitement;
+    if(payUrl){
+      window.location.href = payUrl;
+    } else {
+      // Fallback si lien non configuré : afficher le panneau succès classique
+      document.getElementById('dossier-num-'+id).textContent=dossier;
+      document.getElementById('fc-'+id).style.display='none';
+      document.getElementById('sp-'+id).classList.add('show');
+      setTimeout(function(){
+        document.getElementById('sp-'+id).scrollIntoView({behavior:'smooth',block:'nearest'});
+      },50);
+    }
 
   } catch(e) {
     console.error('Erreur Supabase:', e);
