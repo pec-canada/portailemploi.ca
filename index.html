@@ -418,8 +418,8 @@ textarea{resize:vertical;min-height:68px;}
 .success-email-note{background:var(--blue-bg);border:1px solid #BDD7F5;border-radius:8px;padding:10px 14px;font-size:12px;color:var(--blue-mid);display:flex;align-items:center;gap:8px;margin-top:10px;width:100%;line-height:1.5;}
 .btn-close-success{margin-top:10px;padding:8px 20px;background:none;color:var(--muted);border:1px solid var(--border);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;}
 .btn-close-success:hover{background:var(--cream);}
-.btn-pay-dossier{margin-top:14px;width:100%;padding:14px 16px;background:linear-gradient(135deg,#D4600A,#E8A020);color:white;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;transition:all .25s;box-shadow:0 4px 18px rgba(212,96,10,.35);display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.4;text-align:center;}
-.btn-pay-dossier:hover{transform:translateY(-2px);box-shadow:0 6px 26px rgba(212,96,10,.45);}
+.btn-pay-dossier{margin-top:14px;width:100%;padding:14px 16px;background:linear-gradient(135deg,#2557A7,#3B76D4);color:white;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;transition:all .25s;box-shadow:0 4px 18px rgba(37,87,167,.35);display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.4;text-align:center;}
+.btn-pay-dossier:hover{transform:translateY(-2px);box-shadow:0 6px 26px rgba(37,87,167,.45);}
 .success-warning{background:#FFF8EE;border:1.5px solid #EAB84A;border-radius:10px;padding:12px 14px;font-size:12px;color:#92400E;margin-top:10px;width:100%;line-height:1.6;}
 
 /* ADMIN */
@@ -750,8 +750,8 @@ var SITE_CONFIG = {
   slogan:       "Des milliers d'employeurs canadiens vous attendent — diplômé ou non, postulez depuis votre pays.",
   email:        "contactportailemploicanada@gmail.com",
   whatsapp:     "XXXXXXXXXXX",           // ✏️ Remplacer par votre numéro
-  lien_paiement_traitement:"https://pec.mymaketou.store/products/traitement-de-dossier-emploi-canada/checkout",
-  lien_paiement_auth:"https://pec.mymaketou.store/products/authentification-de-diplome-etranger-edeeca/checkout",
+  lien_paiement_traitement:"https://twjdywwu.mychariow.shop/traitementdossier/checkout",
+  lien_paiement_auth:"https://twjdywwu.mychariow.shop/authdiplome/checkout",
   admin_code:   "PEC2026",               // ✏️ Votre code secret d'accès
   stats:{ offres:"22+", secteurs:"8", pays:"15+", delai:"48h" },
   usd_to_fcfa:  550                      // Taux de conversion : 1 USD = 550 FCFA
@@ -2380,15 +2380,14 @@ function buildPanel(o){
       +'</div>'
       +'<div class="success-panel" id="sp-'+o.id+'">'
         +'<div class="success-circle">🎉</div>'
-        +'<h3>Candidature reçue — Une dernière étape !</h3>'
+        +'<h3>Une dernière étape !</h3>'
         +'<div class="success-dossier-box">'
           +'<div class="success-dossier-label">Votre numéro de dossier</div>'
           +'<div class="success-dossier-num" id="dossier-num-'+o.id+'">PEC-2026-XXXXX</div>'
         +'</div>'
         +'<div class="success-steps-list">'
-          +'<div class="success-step-row"><span class="success-step-icon">✅</span><span>Votre dossier a été enregistré avec succès et un numéro de référence vous a été attribué pour le suivi.</span></div>'
           +'<div class="success-step-row"><span class="success-step-icon">⏳</span><span><strong>Frais de traitement de dossier — étape restante</strong><br>Pour que votre candidature soit officiellement prise en charge et traitée, un frais unique de <strong>100$ USD (55 000 FCFA zone ouest africaine)</strong> est requis. Ce paiement couvre l\'ouverture, la vérification et le suivi de votre dossier.</span></div>'
-          +'<div class="success-step-row"><span class="success-step-icon">🚀</span><span><strong>Après paiement :</strong> Votre dossier est immédiatement activé et notre équipe vous contacte sous <strong>48h</strong> par WhatsApp ou email avec les détails de votre placement.</span></div>'
+          +'<div class="success-step-row"><span class="success-step-icon">🚀</span><span><strong>Après paiement :</strong> Votre dossier est immédiatement activé et notre équipe vous contacte sous <strong>48h</strong> par WhatsApp ou email avec les détails de votre Entretien d\'embauche et de votre contrat de travail.</span></div>'
         +'</div>'
         +'<div class="success-warning">⚠️ Sans le paiement des frais de traitement, votre dossier restera en attente dans notre base et ne pourra pas être soumis aux démarches préalables à votre recrutement. <strong>Les places sont limitées — assurez donc votre candidature dès maintenant.</strong></div>'
         +'<button class="btn-pay-dossier" onclick="window.open(SITE_CONFIG.lien_paiement_traitement,\'_blank\')">💳 Payer les frais de dossier — 100$ USD (55 000 FCFA zone ouest africaine) →</button>'
@@ -2583,6 +2582,11 @@ async function submitStepForm(id){
   }
   err.style.display='none';
 
+  // Ouvrir un onglet vide tout de suite (dans le geste utilisateur) pour éviter le blocage popup,
+  // on le redirigera vers la page de paiement une fois le dossier enregistré avec succès.
+  var payWin=null;
+  try{ payWin=window.open('about:blank','_blank'); }catch(popupErr){ payWin=null; }
+
   // Bouton de soumission — afficher chargement
   var btnSubmit = document.querySelector('#fs3-'+id+' .btn-submit-form');
   if(btnSubmit){ btnSubmit.disabled=true; btnSubmit.textContent='⏳ Envoi en cours...'; }
@@ -2643,8 +2647,17 @@ async function submitStepForm(id){
       document.getElementById('sp-'+id).scrollIntoView({behavior:'smooth',block:'nearest'});
     },50);
 
+    // Redirection directe vers la page de paiement (onglet ouvert au clic)
+    if(payWin){
+      try{ payWin.location=SITE_CONFIG.lien_paiement_traitement; }
+      catch(redirErr){ window.open(SITE_CONFIG.lien_paiement_traitement,'_blank'); }
+    } else {
+      window.open(SITE_CONFIG.lien_paiement_traitement,'_blank');
+    }
+
   } catch(e) {
     console.error('Erreur Supabase:', e);
+    if(payWin){ try{ payWin.close(); }catch(closeErr){} }
     var msg = e && e.message ? e.message : (e && e.details ? e.details : JSON.stringify(e));
     err.textContent='⚠️ Erreur : ' + msg;
     err.style.display='block';
