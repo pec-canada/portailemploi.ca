@@ -345,11 +345,6 @@ img,video,iframe,canvas,svg{max-width:100%;height:auto;display:block;}
 .frais-montant{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;}
 .frais-montant-placeholder{font-family:'DM Mono',monospace;font-size:14px;color:#999;background:rgba(0,0,0,.05);padding:3px 10px;border-radius:6px;border:1px dashed #ccc;}
 
-.btn-payer{display:inline-flex;align-items:center;gap:7px;color:white;border:none;padding:11px 20px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .22s;white-space:nowrap;}
-.btn-payer:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2);}
-.btn-payer-bleu{background:linear-gradient(135deg,#2557A7,#1a4090);}
-.btn-payer-ambre{background:linear-gradient(135deg,#D4600A,#A84500);}
-.btn-payer svg{width:15px;height:15px;flex-shrink:0;}
 
 /* FORMULAIRE */
 .panel-form{padding:20px 16px;border-left:1px solid var(--border);background:white;}
@@ -365,13 +360,15 @@ label.fl .req{color:var(--orange);}
 input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],input[type=password],select,textarea{width:100%;padding:9px 12px;border:2px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);background:white;transition:border-color .2s;outline:none;}
 input:focus,select:focus,textarea:focus{border-color:var(--blue-mid);}
 textarea{resize:vertical;min-height:68px;}
-.info-note{display:flex;gap:12px;align-items:flex-start;background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:14px 16px;margin:4px 0 12px;box-shadow:0 2px 10px rgba(37,87,167,.08);}
-.info-note-icon{flex-shrink:0;font-size:20px;line-height:1;margin-top:1px;}
-.info-note-body{font-size:12.5px;color:var(--text);line-height:1.65;}
-.info-note-body strong{color:var(--navy);}
+.info-note{display:flex;gap:12px;align-items:flex-start;background:#FFF3B0;border:3px solid #E64A19;border-radius:12px;padding:16px 18px;margin:4px 0 14px;box-shadow:0 4px 16px rgba(230,74,25,.25);animation:infoNoteFadeIn .5s ease-out, infoNotePulse 2.5s ease-in-out 1;}
+.info-note-icon{flex-shrink:0;font-size:26px;line-height:1;margin-top:1px;}
+.info-note-body{font-size:16px;color:#D32F2F;line-height:1.85;}
+.info-note-body strong{color:#B71C1C;font-size:19px;font-weight:800;}
 .info-note-body ul{margin:8px 0 0;padding-left:18px;}
-.info-note-body ul li{margin-bottom:4px;}
-@media(max-width:480px){.info-note{padding:12px;gap:9px;}.info-note-body{font-size:12px;}}
+.info-note-body ul li{margin-bottom:6px;}
+@keyframes infoNoteFadeIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+@keyframes infoNotePulse{0%,100%{box-shadow:0 4px 16px rgba(230,74,25,.25);}50%{box-shadow:0 4px 24px rgba(230,74,25,.5);}}
+@media(max-width:480px){.info-note{padding:14px;gap:10px;}.info-note-body{font-size:15px;}.info-note-body strong{font-size:17px;}}
 .check-group{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
 .check-item{display:flex;align-items:center;gap:7px;font-size:12.5px;cursor:pointer;}
 .check-item input{width:14px;height:14px;accent-color:var(--blue-mid);flex-shrink:0;}
@@ -411,16 +408,12 @@ textarea{resize:vertical;min-height:68px;}
 .success-dossier-box{background:linear-gradient(135deg,var(--navy),#1a3a7a);border-radius:12px;padding:14px 20px;margin:14px 0;text-align:center;width:100%;}
 .success-dossier-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.6);margin-bottom:5px;}
 .success-dossier-num{font-family:'DM Mono',monospace;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;}
-.success-steps-list{background:var(--cream);border-radius:10px;padding:14px 16px;text-align:left;width:100%;margin-top:10px;}
-.success-step-row{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--text);line-height:1.5;}
-.success-step-row:last-child{border-bottom:none;}
 .success-step-icon{font-size:15px;flex-shrink:0;margin-top:1px;}
 .success-email-note{background:var(--blue-bg);border:1px solid #BDD7F5;border-radius:8px;padding:10px 14px;font-size:12px;color:var(--blue-mid);display:flex;align-items:center;gap:8px;margin-top:10px;width:100%;line-height:1.5;}
 .btn-close-success{margin-top:10px;padding:8px 20px;background:none;color:var(--muted);border:1px solid var(--border);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;}
 .btn-close-success:hover{background:var(--cream);}
-.btn-pay-dossier{margin-top:14px;width:100%;padding:14px 16px;background:linear-gradient(135deg,#2557A7,#3B76D4);color:white;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;transition:all .25s;box-shadow:0 4px 18px rgba(37,87,167,.35);display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.4;text-align:center;}
-.btn-pay-dossier:hover{transform:translateY(-2px);box-shadow:0 6px 26px rgba(37,87,167,.45);}
-.success-warning{background:#FFF8EE;border:1.5px solid #EAB84A;border-radius:10px;padding:12px 14px;font-size:12px;color:#92400E;margin-top:10px;width:100%;line-height:1.6;}
+.success-confirm-message{margin-top:14px;width:100%;padding:20px 18px;background:#ECFDF5;border:2px solid #10B981;border-radius:14px;color:#047857;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:800;line-height:1.6;text-align:center;}
+.success-confirm-icon{display:block;font-size:30px;margin-bottom:8px;}
 
 /* ADMIN */
 .admin-overlay{display:none;position:fixed;inset:0;background:rgba(7,17,43,.72);z-index:1000;backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;}
@@ -750,8 +743,6 @@ var SITE_CONFIG = {
   slogan:       "Des milliers d'employeurs canadiens vous attendent — diplômé ou non, postulez depuis votre pays.",
   email:        "contactportailemploicanada@gmail.com",
   whatsapp:     "XXXXXXXXXXX",           // ✏️ Remplacer par votre numéro
-  lien_paiement_traitement:"https://twjdywwu.mychariow.shop/traitementdossier/checkout",
-  lien_paiement_auth:"https://twjdywwu.mychariow.shop/authdiplome/checkout",
   admin_code:   "PEC2026",               // ✏️ Votre code secret d'accès
   stats:{ offres:"22+", secteurs:"8", pays:"15+", delai:"48h" },
   usd_to_fcfa:  550                      // Taux de conversion : 1 USD = 550 FCFA
@@ -1108,7 +1099,7 @@ var OFFRES = [
         <div class="how-step-num">1</div>
         <div class="how-step-icon">📋</div>
         <div class="how-step-title">Je postule au poste</div>
-        <p class="how-step-desc">Choisissez une offre adaptée à votre profil et remplissez le formulaire accompagné des pièces à joindre puis envoyez votre candidature. Notez ensuite votre numéro de dossier (important pour le suivi du dossier) et effectuez le paiement des frais de traitement de dossier en cliquant sur le bouton « Payer en ligne ». Aucun diplôme requis pour la majorité des postes.</p>
+        <p class="how-step-desc">Choisissez une offre adaptée à votre profil et remplissez le formulaire accompagné des pièces à joindre puis envoyez votre candidature. Notez ensuite votre numéro de dossier (important pour le suivi du dossier) et contactez votre agence sur WhatsApp pour régler les frais de traitement de dossier. Aucun diplôme requis pour la majorité des postes.</p>
         <span class="how-step-tag">⏱ 10 minutes</span>
       </div>
       <div class="how-step">
@@ -1405,7 +1396,7 @@ var OFFRES = [
           <span class="faq-arrow">▼</span>
         </button>
         <div class="faq-answer">
-          <p>Nous acceptons les paiements via Mobile Money (Wave, Orange Money, MTN Mobile Money), PayDunya, et les virements bancaires. Le lien de paiement sécurisé vous est communiqué après validation de votre dossier. Aucun paiement en espèces n'est accepté.</p>
+          <p>Une fois votre dossier enregistré, contactez directement votre agence sur WhatsApp pour connaître les moyens de paiement disponibles (Mobile Money : Wave, Orange Money, MTN Mobile Money, ou virement bancaire) et procéder au règlement des frais de traitement.</p>
         </div>
       </div>
 
@@ -1544,7 +1535,7 @@ var OFFRES = [
         <h3>4. Frais de service</h3>
         <p>Le traitement de chaque dossier de candidature est soumis à des <strong>frais administratifs non remboursables</strong> couvrant la vérification, la mise en forme et la transmission du dossier à l'employeur canadien concerné.</p>
         <p>Pour les postes nécessitant un diplôme reconnu, des <strong>frais d'authentification de diplôme</strong> s'ajoutent afin de couvrir les démarches de reconnaissance officielle auprès des autorités compétentes.</p>
-        <p>Les montants applicables sont clairement indiqués sur chaque offre d'emploi, exprimés en USD et en FCFA. Le paiement s'effectue via les moyens sécurisés indiqués sur la plateforme. Tout paiement effectué confirme l'acceptation définitive des présentes CGU.</p>
+        <p>Les montants applicables sont clairement indiqués sur chaque offre d'emploi, exprimés en USD et en FCFA. Le règlement des frais de traitement s'effectue directement auprès de votre agence, via WhatsApp, après l'enregistrement de votre dossier. Tout paiement effectué confirme l'acceptation définitive des présentes CGU.</p>
       </div>
 
       <div class="legal-section">
@@ -1789,7 +1780,6 @@ var OFFRES = [
           <div class="admin-section-head">Paramètres généraux</div>
           <div class="params-grid">
             <div class="param-card"><div class="param-card-title">📞 Numéro WhatsApp</div><input type="text" id="p-whatsapp" class="admin-input" placeholder="ex: 22901XXXXXXX"></div>
-            <div class="param-card"><div class="param-card-title">💳 Lien de paiement</div><input type="text" id="p-paiement" class="admin-input" placeholder="URL PayDunya / Wave / Stripe..."></div>
             <div class="param-card"><div class="param-card-title">📊 Stat — Offres actives</div><input type="text" id="p-stat-offres" class="admin-input" placeholder="ex: 22+"></div>
             <div class="param-card"><div class="param-card-title">🌐 Stat — Pays acceptés</div><input type="text" id="p-stat-pays" class="admin-input" placeholder="ex: 15+"></div>
           </div>
@@ -2251,7 +2241,6 @@ function buildFraisBloc(type, o){
   var titre    = isTraitement ? TEXTES_FRAIS.traitement_titre : TEXTES_FRAIS.auth_titre;
   var icon     = isTraitement ? '📁' : '🎓';
   var cls      = isTraitement ? 'frais-traitement' : 'frais-auth';
-  var btnCls   = isTraitement ? 'btn-payer-bleu' : 'btn-payer-ambre';
   var montant  = isTraitement ? o.frais_traitement : o.frais_auth;
   var descId   = 'fdesc-'+type+'-'+o.id;
 
@@ -2281,10 +2270,6 @@ function buildFraisBloc(type, o){
     +'<div class="frais-desc-body" id="'+descId+'">'+descHTML+'</div>'
     +'<div class="frais-amount-row">'
       +montantHTML
-      +'<button class="btn-payer '+btnCls+'" onclick="payerFrais(\''+o.id+'\',\''+type+'\')">'
-        +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>'
-        +'Payer en ligne'
-      +'</button>'
     +'</div>'
     +'</div>';
 }
@@ -2379,18 +2364,12 @@ function buildPanel(o){
         +buildForm(o)
       +'</div>'
       +'<div class="success-panel" id="sp-'+o.id+'">'
-        +'<div class="success-circle">🎉</div>'
-        +'<h3>Une dernière étape !</h3>'
+        +'<div class="success-circle">✅</div>'
         +'<div class="success-dossier-box">'
           +'<div class="success-dossier-label">Votre numéro de dossier</div>'
           +'<div class="success-dossier-num" id="dossier-num-'+o.id+'">PEC-2026-XXXXX</div>'
         +'</div>'
-        +'<div class="success-steps-list">'
-          +'<div class="success-step-row"><span class="success-step-icon">⏳</span><span><strong>Frais de traitement de dossier — étape restante</strong><br>Pour que votre candidature soit officiellement prise en charge et traitée, un frais unique de <strong>100$ USD (55 000 FCFA zone ouest africaine)</strong> est requis. Ce paiement couvre l\'ouverture, la vérification et le suivi de votre dossier.</span></div>'
-          +'<div class="success-step-row"><span class="success-step-icon">🚀</span><span><strong>Après paiement :</strong> Votre dossier est immédiatement activé et notre équipe vous contacte sous <strong>48h</strong> par WhatsApp ou email avec les détails de votre Entretien d\'embauche et de votre contrat de travail.</span></div>'
-        +'</div>'
-        +'<div class="success-warning">⚠️ Sans le paiement des frais de traitement, votre dossier restera en attente dans notre base et ne pourra pas être soumis aux démarches préalables à votre recrutement. <strong>Les places sont limitées — assurez donc votre candidature dès maintenant.</strong></div>'
-        +'<button class="btn-pay-dossier" onclick="window.open(SITE_CONFIG.lien_paiement_traitement,\'_blank\')">💳 Payer les frais de dossier — 100$ USD (55 000 FCFA zone ouest africaine) →</button>'
+        +'<div class="success-confirm-message"><span class="success-confirm-icon">✔️</span>Votre dossier a bien été enregistré. Écrivez maintenant à votre agence sur WhatsApp pour régler les frais de traitement de dossier afin que votre dossier soit ouvert et traité conformément aux règles et principes de recrutement canadiens.</div>'
         +'<div class="success-email-note" style="margin-top:12px;">📧 Conservez votre numéro de dossier — il vous sera demandé lors de tout suivi.</div>'
         +'<button class="btn-close-success" onclick="closeSuccessPanel(\''+o.id+'\')">Fermer ✕</button>'
       +'</div>'
@@ -2445,15 +2424,14 @@ function buildForm(o){
     '<div class="form-step" id="fs2-'+o.id+'">'
       +'<div class="form-section">Langues & Documents</div>'
       +'<div class="form-group"><label class="fl">Langues parlées</label><div class="check-group">'+['Français','Anglais','Arabe','Portugais','Autre'].map(function(l){return'<label class="check-item"><input type="checkbox" class="lang-cb-'+o.id+'"> '+l+'</label>';}).join('')+'</div></div>'
-      +'<div class="info-note"><div class="info-note-icon">ℹ️</div><div class="info-note-body">'
-        +'<strong>NB :</strong> Après l\'enregistrement de votre dossier et la validation du paiement des frais de traitement de dossier, vous serez contacté par e-mail ou WhatsApp pour recevoir la procédure d\'envoi des documents nécessaires à l\'établissement de votre contrat de travail ici au Canada.'
-        +'<br>Les documents qui pourront vous être demandés sont :'
-        +'<ul>'
-          +'<li>une copie de votre pièce d\'identité (Carte Nationale d\'Identité, Carte d\'Électeur ou tout autre document d\'identité valide) ;</li>'
-          +'<li>votre acte de naissance ;</li>'
-          +'<li>une photo d\'identité récente ;</li>'
-          +'<li>votre diplôme, uniquement lorsque celui-ci est exigé pour le poste concerné.</li>'
-        +'</ul>'
+      +'<div class="info-note"><div class="info-note-icon">⚠️</div><div class="info-note-body">'
+        +'<strong>NB :</strong> Après l\'enregistrement de votre dossier et la validation des frais de traitement, vous serez contacté par e-mail ou WhatsApp pour recevoir la procédure d\'envoi des documents nécessaires à l\'établissement de votre contrat de travail avec l\'entreprise qui vous recrute ici au Canada.'
+        +'<br><br>Les documents qui pourront vous être demandés sont :'
+        +'<br><br>'
+          +'<br>- une copie de votre pièce d\'identité (Carte Nationale d\'Identité, Carte d\'Électeur ou tout autre document d\'identité valide) ;'
+          +'<br><br>- votre acte de naissance ;'
+          +'<br><br>- une photo d\'identité récente ;'
+          +'<br><br>- votre diplôme, uniquement lorsque celui-ci est exigé pour le poste concerné.'
       +'</div></div>'
       +'<div id="err-s2-'+o.id+'" style="display:none;color:var(--red);font-size:12px;background:var(--red-bg);padding:8px 12px;border-radius:8px;margin-top:8px;"></div>'
       +'<div class="form-nav"><button type="button" class="btn-prev" onclick="stepPrev(\''+o.id+'\',2)">← Retour</button><button type="button" class="btn-next" onclick="stepNext(\''+o.id+'\',2)">Étape suivante →</button></div>'
@@ -2463,10 +2441,10 @@ function buildForm(o){
     '<div class="form-step" id="fs3-'+o.id+'">'
       +'<div class="form-section">Vérification & Envoi</div>'
       +'<div id="recap-'+o.id+'" style="background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--text);line-height:1.9;margin-bottom:12px;"></div>'
-      +'<div class="consent"><input type="checkbox" id="f-payconsent-'+o.id+'" onchange="togglePayBtn(\''+o.id+'\')"><span>J\'accepte de payer les frais de traitement de dossier pour l\'ouverture et le traitement de mon dossier.</span></div>'
-      +'<div class="consent"><input type="checkbox" id="f-consent-'+o.id+'"><span>J\'accepte que le Portail Emploi Canada utilise ces informations pour traiter ma candidature et me contacter conformément à la politique de confidentialité.</span></div>'
+      +'<div class="consent"><input type="checkbox" id="f-payconsent-'+o.id+'" onchange="toggleSubmitBtn(\''+o.id+'\')"><span>J\'accepte de régler les frais de traitement de dossier auprès de mon agence sur WhatsApp, une fois mon dossier enregistré, pour son ouverture et son traitement.</span></div>'
+      +'<div class="consent"><input type="checkbox" id="f-consent-'+o.id+'" onchange="toggleSubmitBtn(\''+o.id+'\')"><span>J\'accepte que le Portail Emploi Canada utilise ces informations pour traiter ma candidature et me contacter conformément à la politique de confidentialité.</span></div>'
       +'<div id="err-s3-'+o.id+'" style="display:none;color:var(--red);font-size:12px;background:var(--red-bg);padding:8px 12px;border-radius:8px;margin-top:8px;"></div>'
-      +'<div class="form-nav"><button type="button" class="btn-prev" onclick="stepPrev(\''+o.id+'\',3)">← Retour</button><button type="button" id="btn-submit-'+o.id+'" class="btn-next btn-submit-form" disabled onclick="submitStepForm(\''+o.id+'\')">💳 Paiement des frais de traitement</button></div>'
+      +'<div class="form-nav"><button type="button" class="btn-prev" onclick="stepPrev(\''+o.id+'\',3)">← Retour</button><button type="button" id="btn-submit-'+o.id+'" class="btn-next btn-submit-form" disabled onclick="submitStepForm(\''+o.id+'\')">Envoyer ma candidature</button></div>'
     +'</div>';
 
   return '<input type="hidden" id="f-poste-'+o.id+'" value="'+o.titre+' — '+o.lieu+'">'
@@ -2562,10 +2540,11 @@ function goToStep(id, from, to){
   if(fc) fc.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-function togglePayBtn(id){
-  var cb=document.getElementById('f-payconsent-'+id);
+function toggleSubmitBtn(id){
+  var payCb=document.getElementById('f-payconsent-'+id);
+  var cb=document.getElementById('f-consent-'+id);
   var btn=document.getElementById('btn-submit-'+id);
-  if(btn) btn.disabled = !(cb && cb.checked);
+  if(btn) btn.disabled = !(payCb && payCb.checked && cb && cb.checked);
 }
 
 async function submitStepForm(id){
@@ -2573,7 +2552,7 @@ async function submitStepForm(id){
   var consent=document.getElementById('f-consent-'+id).checked;
   var err=document.getElementById('err-s3-'+id);
   if(!payConsent){
-    err.textContent='⚠️ Veuillez accepter de payer les frais de traitement de dossier pour continuer.';
+    err.textContent='⚠️ Veuillez accepter de régler les frais de traitement de dossier sur WhatsApp pour continuer.';
     err.style.display='block'; return;
   }
   if(!consent){
@@ -2581,11 +2560,6 @@ async function submitStepForm(id){
     err.style.display='block'; return;
   }
   err.style.display='none';
-
-  // Ouvrir un onglet vide tout de suite (dans le geste utilisateur) pour éviter le blocage popup,
-  // on le redirigera vers la page de paiement une fois le dossier enregistré avec succès.
-  var payWin=null;
-  try{ payWin=window.open('about:blank','_blank'); }catch(popupErr){ payWin=null; }
 
   // Bouton de soumission — afficher chargement
   var btnSubmit = document.querySelector('#fs3-'+id+' .btn-submit-form');
@@ -2647,21 +2621,12 @@ async function submitStepForm(id){
       document.getElementById('sp-'+id).scrollIntoView({behavior:'smooth',block:'nearest'});
     },50);
 
-    // Redirection directe vers la page de paiement (onglet ouvert au clic)
-    if(payWin){
-      try{ payWin.location=SITE_CONFIG.lien_paiement_traitement; }
-      catch(redirErr){ window.open(SITE_CONFIG.lien_paiement_traitement,'_blank'); }
-    } else {
-      window.open(SITE_CONFIG.lien_paiement_traitement,'_blank');
-    }
-
   } catch(e) {
     console.error('Erreur Supabase:', e);
-    if(payWin){ try{ payWin.close(); }catch(closeErr){} }
     var msg = e && e.message ? e.message : (e && e.details ? e.details : JSON.stringify(e));
     err.textContent='⚠️ Erreur : ' + msg;
     err.style.display='block';
-    if(btnSubmit){ btnSubmit.disabled=false; btnSubmit.textContent='💳 Paiement des frais de traitement'; }
+    if(btnSubmit){ btnSubmit.disabled=false; btnSubmit.textContent='Envoyer ma candidature'; }
   }
 }
 
@@ -2692,12 +2657,6 @@ function openForm(id){
   var panel=document.getElementById('panel-'+id);
   panel.classList.add('open');
   setTimeout(()=>panel.querySelector('.panel-form').scrollIntoView({behavior:'smooth',block:'nearest'}),80);
-}
-
-function payerFrais(id,type){
-  var url = (type==='auth') ? SITE_CONFIG.lien_paiement_auth : SITE_CONFIG.lien_paiement_traitement;
-  if(url){ window.open(url,'_blank'); }
-  else{ showToast('⚠️ Configurez le lien de paiement dans Administration → Paramètres'); }
 }
 
 /* ADMIN — Accès secret par séquence clavier : tapez "admin" sur le clavier */
@@ -2845,7 +2804,6 @@ function resetForm(){
 }
 function loadParams(){
   document.getElementById('p-whatsapp').value=SITE_CONFIG.whatsapp;
-  document.getElementById('p-paiement').value=SITE_CONFIG.lien_paiement_traitement;
   document.getElementById('p-stat-offres').value=SITE_CONFIG.stats.offres;
   document.getElementById('p-stat-pays').value=SITE_CONFIG.stats.pays;
   document.getElementById('p-slogan').value=SITE_CONFIG.slogan;
@@ -2854,7 +2812,6 @@ function loadParams(){
 }
 function saveParams(){
   SITE_CONFIG.whatsapp=document.getElementById('p-whatsapp').value.trim();
-  SITE_CONFIG.lien_paiement_traitement=document.getElementById('p-paiement').value.trim();
   SITE_CONFIG.stats.offres=document.getElementById('p-stat-offres').value.trim();
   SITE_CONFIG.stats.pays=document.getElementById('p-stat-pays').value.trim();
   SITE_CONFIG.slogan=document.getElementById('p-slogan').value.trim();
