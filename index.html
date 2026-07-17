@@ -528,11 +528,11 @@ textarea.admin-input{min-height:80px;resize:vertical;}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:white;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:500;z-index:9999;transition:transform .3s;box-shadow:0 8px 24px rgba(7,17,43,.25);max-width:calc(100vw - 32px);}
 .toast.show{transform:translateX(-50%) translateY(0);}
 
-/* ── DOUBLE DEVISE (USD + FCFA) ── */
+/* ── DOUBLE DEVISE (USD + CDF) ── */
 .dual-amount{display:flex;flex-direction:column;gap:2px;}
 .amount-usd{font-family:'DM Mono',monospace;font-size:19px;font-weight:600;color:inherit;}
 .amount-sep{display:none;}
-.amount-fcfa{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.3px;}
+.amount-cdf{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.3px;}
 
 /* ── SALAIRE MENSUEL ── */
 .panel-salary-wrap{background:linear-gradient(135deg,#EBF4FF,#F0F7FF);border:1.5px solid #BDD7F5;border-radius:12px;padding:14px 16px;margin:12px 0 16px;}
@@ -541,7 +541,7 @@ textarea.admin-input{min-height:80px;resize:vertical;}
 .salary-monthly-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
 .salary-monthly-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--blue-mid);font-weight:700;flex-shrink:0;}
 .salary-monthly-usd{font-family:'DM Mono',monospace;font-size:17px;font-weight:700;color:var(--navy);}
-.salary-monthly-fcfa{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);background:rgba(0,0,0,.05);padding:2px 8px;border-radius:6px;}
+.salary-monthly-cdf{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);background:rgba(0,0,0,.05);padding:2px 8px;border-radius:6px;}
 
 /* ── CHIP POSTES ── */
 .chip-postes{background:linear-gradient(135deg,#FFF3E0,#FFF8EE) !important;color:#C05000 !important;border:1px solid #F5C07A;font-weight:600;}
@@ -745,7 +745,7 @@ var SITE_CONFIG = {
   whatsapp:     "XXXXXXXXXXX",           // ✏️ Remplacer par votre numéro
   admin_code:   "PEC2026",               // ✏️ Votre code secret d'accès
   stats:{ offres:"41+", secteurs:"9", pays:"15+", delai:"48h" },
-  usd_to_fcfa:  550                      // Taux de conversion : 1 USD = 550 FCFA
+  usd_to_cdf:   2300                     // Taux de conversion : 1 USD = 2300 CDF (à ajuster selon le taux du jour)
 };
 
 /* ═══════════════════════════════════════════════
@@ -762,8 +762,8 @@ var TEXTES_FRAIS = {
 
 /* ═══════════════════════════════════════════════
    OFFRES D'EMPLOI
-   frais_traitement : ex "100$ USD (55 000 FCFA)" (toutes offres)
-   frais_auth       : ex "5$ USD (2 750 FCFA)" (si diplome_requis:true)
+   frais_traitement : ex "100$ USD (230 000 CDF)" (toutes offres)
+   frais_auth       : ex "5$ USD (11 500 CDF)" (si diplome_requis:true)
    Laisser "" pour afficher "montant à confirmer"
 ═══════════════════════════════════════════════ */
 var OFFRES = [
@@ -774,7 +774,7 @@ var OFFRES = [
     employeur:"Alberta Health Services", lieu:"Edmonton, Alberta",
     type_contrat:"Temps plein — Permanent", salaire:"35 – 48 $/heure",
     date:"2026-06-02", diplome_requis:true, postes_recherches:3500,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"L'Alberta Health Services recrute des infirmiers(ères) diplômés pour ses établissements de soins continus. Équipe multidisciplinaire, environnement multiculturel et bilinguisme apprécié.",
     exigences:["Diplôme en sciences infirmières reconnu (EDE exigée)","Inscription ou éligibilité CARNA","Expérience en soins gériatriques appréciée","Maîtrise du français et/ou de l'anglais","Permis de travail (accompagnement disponible)"],
     conditions:{horaire:"Rotation jour/soir/nuit",logement:"Non fourni",langue:"Français / Anglais",debut:"Dès que possible"} },
@@ -784,7 +784,7 @@ var OFFRES = [
     employeur:"Résidence St-Joseph", lieu:"Grande Prairie, Alberta",
     type_contrat:"Temps plein — Permanent", salaire:"18 – 25 $/heure",
     date:"2026-05-30", diplome_requis:false, postes_recherches:4200,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Assistance aux résidents dans les activités quotidiennes. Formation de courte durée offerte à l'embauche. Poste accessible sans diplôme universitaire.",
     exigences:["Aucun diplôme universitaire requis","Empathie et patience","Disponibilité pour horaires rotatifs","Notions d'anglais suffisantes"],
     conditions:{horaire:"Jour / Soir",logement:"Non fourni",langue:"Anglais de base",debut:"Immédiat"} },
@@ -794,7 +794,7 @@ var OFFRES = [
     employeur:"Shoppers Drug Mart", lieu:"Ottawa, Ontario",
     type_contrat:"Temps plein", salaire:"20 – 28 $/heure",
     date:"2026-05-28", diplome_requis:true, postes_recherches:3000,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Préparation et distribution de médicaments sous supervision d'un pharmacien. Gestion des stocks, service à la clientèle, saisie des ordonnances.",
     exigences:["Diplôme de technicien en pharmacie (EDE exigée)","Inscription ou éligibilité OCP Ontario","Rigueur et précision","Anglais obligatoire"],
     conditions:{horaire:"Lun–Sam, horaires variables",logement:"Non fourni",langue:"Anglais obligatoire",debut:"Dès que possible"} },
@@ -804,7 +804,7 @@ var OFFRES = [
     employeur:"CarePartners", lieu:"Hamilton, Ontario",
     type_contrat:"Temps partiel / Temps plein", salaire:"17 – 22 $/heure",
     date:"2026-05-20", diplome_requis:false, postes_recherches:5000,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Accompagnement de personnes âgées ou handicapées à domicile. Aide à la vie quotidienne, préparation des repas, soutien moral. Kilométrage remboursé.",
     exigences:["Aucun diplôme requis","Permis de conduire valide","Empathie et fiabilité","Casier judiciaire vierge"],
     conditions:{horaire:"Flexible — jour et soir",logement:"Non fourni",langue:"Anglais de base",debut:"Immédiat"} },
@@ -815,7 +815,7 @@ var OFFRES = [
     employeur:"L'Intendant Construction", lieu:"Québec, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"100 000 – 140 000 $/an",
     date:"2026-06-01", diplome_requis:true, postes_recherches:3200,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Supervision complète des opérations sur chantiers résidentiels et commerciaux. Poste de haute responsabilité avec avantages sociaux complets.",
     exigences:["5 ans d'expérience en supervision","Diplôme génie civil ou construction (EDE exigée)","Normes de construction québécoises","Leadership équipes 10+ personnes","Français obligatoire"],
     conditions:{horaire:"Lun–Ven 7h–17h",logement:"Non fourni",langue:"Français obligatoire",debut:"Selon disponibilité"} },
@@ -825,7 +825,7 @@ var OFFRES = [
     employeur:"QScale Datacenters", lieu:"Lévis, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"À discuter selon expérience",
     date:"2026-05-26", diplome_requis:true, postes_recherches:3100,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Entretien et maintenance des équipements mécaniques fixes dans un centre de données IA de nouvelle génération.",
     exigences:["Certification MMF Classe B (EDE exigée)","Maintenance industrielle 3 ans min.","Connaissance CVAC un atout","Français requis"],
     conditions:{horaire:"Horaires variables",logement:"Non fourni",langue:"Français requis",debut:"Dès que possible"} },
@@ -835,7 +835,7 @@ var OFFRES = [
     employeur:"Constructions Beaumont", lieu:"Laval, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"38 – 52 $/heure",
     date:"2026-05-29", diplome_requis:true, postes_recherches:4000,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Installation électrique complète sur des projets résidentiels neufs. Matériel de pointe fourni, équipe dynamique.",
     exigences:["Licence électricien Classe C ou supérieure (EDE exigée)","Code électrique Canada","Lecture de plans électriques","3 ans d'expérience","Français requis"],
     conditions:{horaire:"Lun–Ven, 7h–16h30",logement:"Non fourni",langue:"Français requis",debut:"Dès que possible"} },
@@ -845,7 +845,7 @@ var OFFRES = [
     employeur:"Plomberie Nordique Inc.", lieu:"Gatineau, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"36 – 48 $/heure",
     date:"2026-05-24", diplome_requis:true, postes_recherches:3600,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Installation, entretien et réparation de systèmes de plomberie résidentiels et commerciaux. Véhicule de service fourni.",
     exigences:["Certificat de qualification plombier (EDE exigée)","Expérience installation et rénovation","Permis de conduire valide","Français requis"],
     conditions:{horaire:"Lun–Ven + urgences",logement:"Non fourni",langue:"Français requis",debut:"Immédiat"} },
@@ -856,7 +856,7 @@ var OFFRES = [
     employeur:"TransCan Logistics", lieu:"Toronto, Ontario",
     type_contrat:"Temps plein — Permanent", salaire:"28 – 38 $/heure",
     date:"2026-05-31", diplome_requis:false, postes_recherches:6500,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Transport de marchandises inter-provincial. Plus de 25 000 postes vacants au Canada dans ce secteur. Primes de performance mensuelles.",
     exigences:["Permis Classe 1 ou équivalent reconnu","2 ans expérience longue distance","Règlements routiers canadiens","Anglais de base"],
     conditions:{horaire:"Horaires variables",logement:"Indemnités déplacement",langue:"Anglais de base",debut:"Immédiat"} },
@@ -866,7 +866,7 @@ var OFFRES = [
     employeur:"Société de Transport de Montréal (STM)", lieu:"Montréal, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"27 – 34 $/heure",
     date:"2026-05-27", diplome_requis:false, postes_recherches:4800,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Conduite sur les lignes urbaines de Montréal. Formation complète fournie par la STM. Excellents avantages sociaux et régime de retraite.",
     exigences:["Permis Classe 2 (bus) obtenu ou en cours","Dossier de conduite irréprochable","Français fonctionnel","Ponctualité et fiabilité"],
     conditions:{horaire:"Rotation matin/soir/nuit",logement:"Non fourni",langue:"Français fonctionnel",debut:"Après formation STM"} },
@@ -876,7 +876,7 @@ var OFFRES = [
     employeur:"Amazon Fulfillment", lieu:"Calgary, Alberta",
     type_contrat:"Temps plein — Permanent", salaire:"22 – 29 $/heure",
     date:"2026-05-22", diplome_requis:false, postes_recherches:5500,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Opération de chariots élévateurs dans un entrepôt de distribution. Quarts de jour et de nuit disponibles. Prime de quart de nuit.",
     exigences:["Certification chariot élévateur (formation fournie)","Aucun diplôme requis","Bonne condition physique","Anglais de base"],
     conditions:{horaire:"Quarts rotatifs 10h",logement:"Non fourni",langue:"Anglais de base",debut:"Immédiat"} },
@@ -887,7 +887,7 @@ var OFFRES = [
     employeur:"Hôtel Le Germain", lieu:"Montréal, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"22 – 32 $/heure",
     date:"2026-05-30", diplome_requis:false, postes_recherches:3800,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Brigade culinaire dynamique dans un établissement de prestige. Spécialités africaines, françaises ou internationales valorisées.",
     exigences:["3 ans expérience en cuisine","Techniques culinaires maîtrisées","Disponibilité soirs et week-ends","Créativité et sens de la présentation"],
     conditions:{horaire:"Soirs / Week-ends inclus",logement:"Non fourni",langue:"Français apprécié",debut:"Dès que possible"} },
@@ -897,7 +897,7 @@ var OFFRES = [
     employeur:"Marriott International", lieu:"Vancouver, C.-B.",
     type_contrat:"Temps plein", salaire:"19 – 26 $/heure",
     date:"2026-05-25", diplome_requis:false, postes_recherches:3300,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Accueil clients, gestion des réservations, coordination avec les équipes. Standard Marriott international.",
     exigences:["Expérience hôtelière ou service client","Anglais courant obligatoire","Présentation soignée","Autres langues un atout"],
     conditions:{horaire:"Rotation matin/soir",logement:"Non fourni",langue:"Anglais courant",debut:"Dès que possible"} },
@@ -907,7 +907,7 @@ var OFFRES = [
     employeur:"Hilton Québec", lieu:"Québec, Québec",
     type_contrat:"Temps plein", salaire:"17 – 21 $/heure",
     date:"2026-05-18", diplome_requis:false, postes_recherches:4100,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Entretien des chambres et espaces communs selon les standards Hilton. Poste accessible sans expérience, formation interne fournie.",
     exigences:["Aucun diplôme requis","Aucune expérience requise — formation fournie","Souci du détail","Fiabilité et ponctualité"],
     conditions:{horaire:"Lun–Dim, matin principalement",logement:"Non fourni",langue:"Français de base",debut:"Immédiat"} },
@@ -918,7 +918,7 @@ var OFFRES = [
     employeur:"Sunrise Farms", lieu:"Leamington, Ontario",
     type_contrat:"Saisonnier / Permanent disponible", salaire:"16 – 22 $/heure",
     date:"2026-05-21", diplome_requis:false, postes_recherches:7000,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Programme des Travailleurs Étrangers Temporaires (PTET). Aucun diplôme requis. Logement fourni sur place par l'employeur.",
     exigences:["Aucun diplôme requis","Bonne condition physique","Disponibilité immédiate","Motivation et sérieux"],
     conditions:{horaire:"Lun–Sam selon saison",logement:"✅ Inclus sur place",langue:"Aucune exigence",debut:"Immédiat"} },
@@ -928,7 +928,7 @@ var OFFRES = [
     employeur:"Pure Hothouse Foods", lieu:"Leamington, Ontario",
     type_contrat:"Temps plein — Permanent", salaire:"18 – 25 $/heure",
     date:"2026-05-16", diplome_requis:false, postes_recherches:3500,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Production et entretien de cultures en serres haute technologie. Formation complète fournie. Logement disponible.",
     exigences:["Aucun diplôme requis","Intérêt pour l'horticulture","Disponibilité tôt le matin","Sérieux et régularité"],
     conditions:{horaire:"Lun–Sam, 6h–14h",logement:"Disponible (faible coût)",langue:"Aucune exigence",debut:"Dès que possible"} },
@@ -939,7 +939,7 @@ var OFFRES = [
     employeur:"Entreprise manufacturière (confidentiel)", lieu:"Ayer's Cliff, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"24 – 35 $/heure",
     date:"2026-05-28", diplome_requis:true, postes_recherches:3200,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Support technique, maintenance des systèmes et assistance aux utilisateurs dans une entreprise manufacturière en croissance.",
     exigences:["DEC ou BTS en informatique (EDE exigée)","Support technique 2 ans min.","Windows, réseaux, Active Directory","Français obligatoire"],
     conditions:{horaire:"Lun–Ven, 8h–17h",logement:"Non fourni",langue:"Français obligatoire",debut:"Selon disponibilité"} },
@@ -949,7 +949,7 @@ var OFFRES = [
     employeur:"Industries Doyon", lieu:"Drummondville, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"26 – 38 $/heure",
     date:"2026-05-23", diplome_requis:true, postes_recherches:3800,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Soudure MIG/TIG sur pièces métalliques industrielles. Entreprise familiale stable, excellentes conditions de travail.",
     exigences:["Certificat soudeur ou équivalent (EDE exigée)","Maîtrise MIG/TIG","Lecture de plans mécaniques","Français requis"],
     conditions:{horaire:"Lun–Jeu 6h–16h, Ven 6h–12h",logement:"Non fourni",langue:"Français requis",debut:"Dès que possible"} },
@@ -959,7 +959,7 @@ var OFFRES = [
     employeur:"Cascades Emballage", lieu:"Kingsey Falls, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"21 – 28 $/heure",
     date:"2026-05-19", diplome_requis:false, postes_recherches:4500,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Opération et surveillance de lignes de production d'emballage. Formation complète offerte. Prime de quart et assurances collectives.",
     exigences:["Aucun diplôme requis","Formation interne fournie","Disponibilité quarts rotatifs","Français de base"],
     conditions:{horaire:"Quarts rotatifs 8h",logement:"Non fourni",langue:"Français de base",debut:"Immédiat"} },
@@ -970,7 +970,7 @@ var OFFRES = [
     employeur:"Agence Numérik", lieu:"Montréal, Québec (télétravail possible)",
     type_contrat:"Temps plein — Permanent", salaire:"60 000 – 90 000 $/an",
     date:"2026-06-01", diplome_requis:true, postes_recherches:3000,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Développement d'applications web pour des clients variés. Stack React, Node.js, PostgreSQL. Télétravail 3 jours/semaine.",
     exigences:["Bac. en informatique ou équivalent (EDE exigée)","React, Node.js, REST API","Git, agile/scrum","Portfolio de projets","Français ou anglais"],
     conditions:{horaire:"Lun–Ven, flexible",logement:"Non fourni",langue:"Français ou Anglais",debut:"Selon disponibilité"} },
@@ -980,7 +980,7 @@ var OFFRES = [
     employeur:"Desjardins Groupe", lieu:"Lévis, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"75 000 – 105 000 $/an",
     date:"2026-05-29", diplome_requis:true, postes_recherches:3100,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Protection des systèmes d'information de Desjardins. Surveillance des menaces, analyse forensique, rédaction de politiques de sécurité.",
     exigences:["Bac. en sécurité informatique (EDE exigée)","Certification CEH ou CISSP un atout","Analyse de vulnérabilités","Discrétion et rigueur","Français obligatoire"],
     conditions:{horaire:"Lun–Ven, 8h30–17h",logement:"Non fourni",langue:"Français obligatoire",debut:"Selon disponibilité"} },
@@ -991,7 +991,7 @@ var OFFRES = [
     employeur:"Bell Canada", lieu:"Mississauga, Ontario",
     type_contrat:"Temps plein", salaire:"18 $/h + commissions",
     date:"2026-05-31", diplome_requis:false, postes_recherches:4200,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Vente de forfaits internet, téléphonie et télévision en boutique. Commissions attractives. Formation produit complète fournie par Bell.",
     exigences:["Aucun diplôme requis","Aisance relationnelle et persévérance","Anglais courant obligatoire","Goût du challenge commercial"],
     conditions:{horaire:"Rotation semaine + week-end",logement:"Non fourni",langue:"Anglais courant",debut:"Dès que possible"} },
@@ -1001,7 +1001,7 @@ var OFFRES = [
     employeur:"Dollarama", lieu:"Calgary, Alberta",
     type_contrat:"Temps plein — Permanent", salaire:"22 – 30 $/heure",
     date:"2026-05-24", diplome_requis:false, postes_recherches:3700,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Gestion opérationnelle d'une boutique : supervision d'équipe, gestion des stocks, service client, ouverture et fermeture.",
     exigences:["Expérience gestion boutique ou équipe","Leadership démontré","Organisation et fiabilité","Anglais courant","Disponibilité week-end"],
     conditions:{horaire:"Rotation semaine + week-end",logement:"Non fourni",langue:"Anglais courant",debut:"Dès que possible"} },
@@ -1012,7 +1012,7 @@ var OFFRES = [
     employeur:"Boisco Construction", lieu:"Québec, Québec",
     type_contrat:"Temps plein — Permanent", salaire:"43 200 – 57 600 $/an",
     date:"2026-05-14", diplome_requis:false, postes_recherches:3200,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Fabrication et pose de structures et mobiliers en bois pour chantiers résidentiels et commerciaux.",
     exigences:["Expérience en menuiserie ou ébénisterie","Lecture de plans simples","Précision et minutie","Français requis"],
     conditions:{horaire:"Lun–Ven, 7h–16h",logement:"Non fourni",langue:"Français requis",debut:"Dès que possible"} },
@@ -1022,7 +1022,7 @@ var OFFRES = [
     employeur:"Charpente Laurentides Inc.", lieu:"Saint-Jérôme, Québec",
     type_contrat:"Temps plein", salaire:"45 600 – 60 000 $/an",
     date:"2026-05-15", diplome_requis:false, postes_recherches:2800,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Montage de charpentes en bois pour maisons unifamiliales et petits immeubles, lecture de plans.",
     exigences:["Expérience en charpenterie résidentielle","Lecture de plans","Bonne condition physique","Français requis"],
     conditions:{horaire:"Lun–Ven, 7h–16h30",logement:"Non fourni",langue:"Français requis",debut:"Dès que possible"} },
@@ -1032,7 +1032,7 @@ var OFFRES = [
     employeur:"Salon Élégance Montréal", lieu:"Montréal, Québec",
     type_contrat:"Temps plein", salaire:"33 600 – 45 600 $/an",
     date:"2026-05-17", diplome_requis:false, postes_recherches:2400,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Coupe, coloration et coiffure pour une clientèle variée dans un salon moderne du centre-ville.",
     exigences:["Formation ou expérience en coiffure","Sens du service à la clientèle","Créativité et dextérité","Français requis"],
     conditions:{horaire:"Mar–Sam, horaires variables",logement:"Non fourni",langue:"Français requis",debut:"Immédiat"} },
@@ -1042,7 +1042,7 @@ var OFFRES = [
     employeur:"Électro-Fiable Ontario", lieu:"Toronto, Ontario",
     type_contrat:"Temps plein — Permanent", salaire:"50 400 – 67 200 $/an",
     date:"2026-05-19", diplome_requis:true, postes_recherches:4200,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Installation et entretien de systèmes électriques résidentiels et commerciaux, mise aux normes.",
     exigences:["Licence électricien Classe C ou supérieure (EDE exigée)","Code électrique Canada","Lecture de plans électriques","Anglais courant","3 ans d'expérience"],
     conditions:{horaire:"Lun–Ven, 7h–16h",logement:"Non fourni",langue:"Anglais courant",debut:"Dès que possible"} },
@@ -1052,7 +1052,7 @@ var OFFRES = [
     employeur:"Plomberie Rive-Nord", lieu:"Terrebonne, Québec",
     type_contrat:"Temps plein", salaire:"48 000 – 64 800 $/an",
     date:"2026-05-20", diplome_requis:true, postes_recherches:3800,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Installation, réparation et entretien de systèmes de plomberie résidentielle et commerciale.",
     exigences:["Certificat de qualification plombier (EDE exigée)","Expérience en installation résidentielle et commerciale","Permis de conduire valide","Français requis"],
     conditions:{horaire:"Lun–Ven + urgences",logement:"Non fourni",langue:"Français requis",debut:"Immédiat"} },
@@ -1062,7 +1062,7 @@ var OFFRES = [
     employeur:"Maçonnerie Bâti-Pro", lieu:"Edmonton, Alberta",
     type_contrat:"Temps plein — Permanent", salaire:"44 400 – 58 800 $/an",
     date:"2026-05-21", diplome_requis:true, postes_recherches:3300,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Construction et rénovation de fondations, murs en briques, blocs et pierre sur chantiers variés.",
     exigences:["Certificat en maçonnerie (EDE exigée)","Expérience en construction et rénovation","Bonne condition physique","Anglais de base"],
     conditions:{horaire:"Lun–Ven, 7h–17h",logement:"Non fourni",langue:"Anglais de base",debut:"Dès que possible"} },
@@ -1072,7 +1072,7 @@ var OFFRES = [
     employeur:"Couleurs Canada", lieu:"Ottawa, Ontario",
     type_contrat:"Temps plein", salaire:"36 000 – 48 000 $/an",
     date:"2026-05-22", diplome_requis:false, postes_recherches:4500,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Application de peinture intérieure et extérieure, préparation des surfaces, finitions soignées.",
     exigences:["Expérience en peinture intérieure et extérieure","Souci du détail et des finitions","Disponibilité horaires variables","Français requis"],
     conditions:{horaire:"Lun–Ven, 7h–15h30",logement:"Non fourni",langue:"Anglais de base",debut:"Dès que possible"} },
@@ -1082,7 +1082,7 @@ var OFFRES = [
     employeur:"Métal-Tech Fabrication", lieu:"Calgary, Alberta",
     type_contrat:"Temps plein — Permanent", salaire:"51 600 – 69 600 $/an",
     date:"2026-05-23", diplome_requis:true, postes_recherches:2900,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Soudure MIG/TIG sur structures métalliques industrielles, lecture de plans techniques.",
     exigences:["Certificat soudeur ou équivalent (EDE exigée)","Maîtrise MIG/TIG","Lecture de plans mécaniques","Anglais de base"],
     conditions:{horaire:"Lun–Jeu 6h–16h, Ven 6h–12h",logement:"Non fourni",langue:"Anglais de base",debut:"Dès que possible"} },
@@ -1092,7 +1092,7 @@ var OFFRES = [
     employeur:"Céramique Excellence", lieu:"Laval, Québec",
     type_contrat:"Temps plein", salaire:"40 800 – 55 200 $/an",
     date:"2026-05-24", diplome_requis:false, postes_recherches:2300,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Pose de carrelage, céramique et pierre naturelle pour projets résidentiels haut de gamme.",
     exigences:["Expérience en pose de carrelage et céramique","Précision et sens esthétique","Disponibilité chantiers résidentiels","Français requis"],
     conditions:{horaire:"Lun–Ven, 7h–16h",logement:"Non fourni",langue:"Français requis",debut:"Immédiat"} },
@@ -1102,7 +1102,7 @@ var OFFRES = [
     employeur:"Toitures Boréales", lieu:"Vancouver, Colombie-Britannique",
     type_contrat:"Temps plein", salaire:"43 200 – 57 600 $/an",
     date:"2026-05-25", diplome_requis:false, postes_recherches:2700,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Installation et réparation de toitures résidentielles et commerciales, travail en hauteur sécurisé.",
     exigences:["Expérience en toiture résidentielle et commerciale","Aptitude au travail en hauteur","Bonne condition physique","Anglais de base"],
     conditions:{horaire:"Lun–Ven, 7h–15h30",logement:"Non fourni",langue:"Anglais courant",debut:"Dès que possible"} },
@@ -1112,7 +1112,7 @@ var OFFRES = [
     employeur:"Garage AutoPlus Ontario", lieu:"Mississauga, Ontario",
     type_contrat:"Temps plein — Permanent", salaire:"42 000 – 56 400 $/an",
     date:"2026-05-26", diplome_requis:true, postes_recherches:3900,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Diagnostic, réparation et entretien de véhicules légers, utilisation d'équipements de diagnostic modernes.",
     exigences:["Diplôme en mécanique automobile (EDE exigée)","Utilisation d'équipements de diagnostic modernes","Permis de conduire valide","Anglais courant"],
     conditions:{horaire:"Lun–Ven, 8h–17h",logement:"Non fourni",langue:"Anglais courant",debut:"Dès que possible"} },
@@ -1122,7 +1122,7 @@ var OFFRES = [
     employeur:"Climatech Solutions", lieu:"Hamilton, Ontario",
     type_contrat:"Temps plein", salaire:"49 200 – 66 000 $/an",
     date:"2026-05-27", diplome_requis:true, postes_recherches:2200,
-    frais_traitement:"55000", frais_auth:"20000",
+    frais_traitement:"230000", frais_auth:"82800",
     description:"Installation et entretien de systèmes de réfrigération et climatisation commerciale et résidentielle.",
     exigences:["Certification en réfrigération/climatisation (EDE exigée)","Expérience en installation et entretien","Rigueur et sens de la sécurité","Anglais courant"],
     conditions:{horaire:"Lun–Ven, horaires variables + garde",logement:"Non fourni",langue:"Anglais courant",debut:"Dès que possible"} },
@@ -1132,7 +1132,7 @@ var OFFRES = [
     employeur:"Excavation Nordique", lieu:"Fort McMurray, Alberta",
     type_contrat:"Temps plein — Permanent", salaire:"48 000 – 63 600 $/an",
     date:"2026-05-28", diplome_requis:false, postes_recherches:3400,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Conduite de pelles, chargeuses et niveleuses sur chantiers de construction et d'infrastructures.",
     exigences:["Certification conduite d'engins lourds (formation possible)","Expérience sur chantiers d'infrastructures","Permis de conduire valide","Anglais de base"],
     conditions:{horaire:"Quarts rotatifs 10h",logement:"Non fourni",langue:"Anglais de base",debut:"Immédiat"} },
@@ -1142,7 +1142,7 @@ var OFFRES = [
     employeur:"Espaces Verts Canada", lieu:"Sherbrooke, Québec",
     type_contrat:"Temps plein", salaire:"34 800 – 45 600 $/an",
     date:"2026-05-29", diplome_requis:false, postes_recherches:4100,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Aménagement et entretien d'espaces verts, plantation, tonte, taille et entretien saisonnier.",
     exigences:["Aucun diplôme requis","Intérêt pour l'horticulture et l'aménagement paysager","Disponibilité saisonnière","Français requis"],
     conditions:{horaire:"Lun–Sam selon saison",logement:"Non fourni",langue:"Français de base",debut:"Immédiat"} },
@@ -1152,7 +1152,7 @@ var OFFRES = [
     employeur:"Boulangerie Artisanale du Nord", lieu:"Québec, Québec",
     type_contrat:"Temps plein", salaire:"34 800 – 46 800 $/an",
     date:"2026-05-30", diplome_requis:false, postes_recherches:2600,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Fabrication de pains et viennoiseries artisanales, pétrissage, cuisson et gestion du fournil.",
     exigences:["Expérience en boulangerie artisanale","Disponibilité tôt le matin","Rigueur et sens de l'hygiène","Français requis"],
     conditions:{horaire:"Lun–Sam, 4h–12h",logement:"Non fourni",langue:"Français requis",debut:"Immédiat"} },
@@ -1162,7 +1162,7 @@ var OFFRES = [
     employeur:"Pâtisserie Douceurs de Montréal", lieu:"Montréal, Québec",
     type_contrat:"Temps plein", salaire:"36 000 – 48 000 $/an",
     date:"2026-05-31", diplome_requis:false, postes_recherches:2000,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Création de pâtisseries fines et desserts pour boutique et service traiteur.",
     exigences:["Expérience en pâtisserie fine","Créativité et sens de la présentation","Disponibilité soirs et week-ends","Français requis"],
     conditions:{horaire:"Mar–Sam, 6h–14h",logement:"Non fourni",langue:"Français requis",debut:"Dès que possible"} },
@@ -1172,7 +1172,7 @@ var OFFRES = [
     employeur:"Boucherie du Terroir", lieu:"Winnipeg, Manitoba",
     type_contrat:"Temps plein", salaire:"37 200 – 49 200 $/an",
     date:"2026-06-01", diplome_requis:false, postes_recherches:2400,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Découpe, préparation et présentation de viandes, conseil à la clientèle en boutique.",
     exigences:["Expérience en boucherie ou découpe de viande","Sens du service à la clientèle","Rigueur et sens de l'hygiène","Anglais de base"],
     conditions:{horaire:"Lun–Sam, 8h–17h",logement:"Non fourni",langue:"Anglais de base",debut:"Immédiat"} },
@@ -1182,7 +1182,7 @@ var OFFRES = [
     employeur:"Restaurant Le Bistrot Canadien", lieu:"London, Ontario",
     type_contrat:"Temps plein", salaire:"38 400 – 51 600 $/an",
     date:"2026-06-02", diplome_requis:false, postes_recherches:5200,
-    frais_traitement:"55000", frais_auth:null,
+    frais_traitement:"230000", frais_auth:null,
     description:"Préparation des plats selon les cartes du restaurant, respect des normes d'hygiène et de sécurité.",
     exigences:["Expérience en cuisine de restaurant","Connaissance des normes d'hygiène HACCP","Disponibilité soirs et week-ends","Anglais de base"],
     conditions:{horaire:"Soirs / Week-ends inclus",logement:"Non fourni",langue:"Anglais de base",debut:"Dès que possible"} }
@@ -1647,7 +1647,7 @@ var OFFRES = [
           <span class="faq-arrow">▼</span>
         </button>
         <div class="faq-answer">
-          <p>Les fourchettes de salaire affichées sur chaque offre sont celles communiquées par les employeurs canadiens partenaires. Elles correspondent aux grilles salariales réelles en vigueur au Canada. Le salaire exact sera confirmé dans le contrat signé avec l'employeur. Les estimations mensuelles en USD et FCFA affichées sur la plateforme sont calculées à titre indicatif sur la base de 40h/semaine.</p>
+          <p>Les fourchettes de salaire affichées sur chaque offre sont celles communiquées par les employeurs canadiens partenaires. Elles correspondent aux grilles salariales réelles en vigueur au Canada. Le salaire exact sera confirmé dans le contrat signé avec l'employeur. Les estimations mensuelles en USD et CDF affichées sur la plateforme sont calculées à titre indicatif sur la base de 40h/semaine.</p>
         </div>
       </div>
 
@@ -1716,7 +1716,7 @@ var OFFRES = [
         <h3>4. Frais de service</h3>
         <p>Le traitement de chaque dossier de candidature est soumis à des <strong>frais administratifs non remboursables</strong> couvrant la vérification, la mise en forme et la transmission du dossier à l'employeur canadien concerné.</p>
         <p>Pour les postes nécessitant un diplôme reconnu, des <strong>frais d'authentification de diplôme</strong> s'ajoutent afin de couvrir les démarches de reconnaissance officielle auprès des autorités compétentes.</p>
-        <p>Les montants applicables sont clairement indiqués sur chaque offre d'emploi, exprimés en USD et en FCFA. Le règlement des frais de traitement s'effectue directement auprès de votre agence, via WhatsApp, après l'enregistrement de votre dossier. Tout paiement effectué confirme l'acceptation définitive des présentes CGU.</p>
+        <p>Les montants applicables sont clairement indiqués sur chaque offre d'emploi, exprimés en USD et en CDF. Le règlement des frais de traitement s'effectue directement auprès de votre agence, via WhatsApp, après l'enregistrement de votre dossier. Tout paiement effectué confirme l'acceptation définitive des présentes CGU.</p>
       </div>
 
       <div class="legal-section">
@@ -1925,11 +1925,11 @@ var OFFRES = [
             <div class="admin-row">
               <div class="admin-form-group">
                 <label class="admin-label">Frais de traitement de dossier <span style="color:var(--orange)">*</span><span class="hint">(toutes offres)</span></label>
-                <input type="text" id="f-frais-traitement" class="admin-input" placeholder="ex: 50 000 FCFA">
+                <input type="text" id="f-frais-traitement" class="admin-input" placeholder="ex: 230 000 CDF">
               </div>
               <div class="admin-form-group">
                 <label class="admin-label">Frais d'authentification de diplôme <span class="hint">(si diplôme requis)</span></label>
-                <input type="text" id="f-frais-auth" class="admin-input" placeholder="ex: 5$ USD (2 750 FCFA)">
+                <input type="text" id="f-frais-auth" class="admin-input" placeholder="ex: 5$ USD (11 500 CDF)">
               </div>
             </div>
           </div>
@@ -1980,23 +1980,25 @@ var OFFRES = [
 var SECTEUR_ICONS={"Santé":"🏥","Construction":"🏗️","Transport":"🚚","Hôtellerie":"🏨","Agriculture":"🌾","Industrie":"🔧","Informatique":"💻","Commerce":"🛒","Éducation":"📚","Métiers Artisanaux":"🛠️","Autre":"📌"};
 
 /* ═══ CONVERSION & SALAIRE MENSUEL ═══ */
-function fcfaToUSD(fcfaStr){
-  if(!fcfaStr) return null;
-  var num=parseInt(fcfaStr.replace(/[^\d]/g,''),10);
+// Les frais (frais_traitement / frais_auth) sont saisis dans OFFRES directement en CDF.
+// Le prix en USD est recalculé à partir du taux SITE_CONFIG.usd_to_cdf.
+function montantSaisiToUSD(montantStr){
+  if(!montantStr) return null;
+  var num=parseInt(montantStr.replace(/[^\d]/g,''),10);
   if(isNaN(num)) return null;
-  return Math.round(num/SITE_CONFIG.usd_to_fcfa);
+  return Math.round(num/SITE_CONFIG.usd_to_cdf);
 }
 function formatUSD(n){ return n.toLocaleString('fr-FR')+'$'; }
-function formatFCFA(n){ return n.toLocaleString('fr-FR')+' FCFA'; }
-function buildDualCurrency(fcfaStr){
-  if(!fcfaStr) return '';
-  var usd=fcfaToUSD(fcfaStr);
-  if(!usd) return fcfaStr;
-  var fcfaNum=parseInt(fcfaStr.replace(/[^\d]/g,''),10);
+function formatCDF(n){ return n.toLocaleString('fr-FR')+' CDF'; }
+function buildDualCurrency(montantStr){
+  if(!montantStr) return '';
+  var usd=montantSaisiToUSD(montantStr);
+  if(!usd) return montantStr;
+  var cdf=usd*SITE_CONFIG.usd_to_cdf;
   return '<span class="dual-amount">'
     +'<span class="amount-usd">'+formatUSD(usd)+' USD</span>'
     +'<span class="amount-sep">≈</span>'
-    +'<span class="amount-fcfa">'+formatFCFA(fcfaNum)+'</span>'
+    +'<span class="amount-cdf">'+formatCDF(cdf)+'</span>'
     +'</span>';
 }
 
@@ -2011,7 +2013,7 @@ function buildSalaryDisplay(salaireRaw){
     var moLo=Math.round(lo*40*52/12);
     var moHi=Math.round(hi*40*52/12);
     var usdLo=moLo; var usdHi=moHi; // $ canadiens affichés comme USD côté offre
-    var fcfaLo=moLo*SITE_CONFIG.usd_to_fcfa; var fcfaHi=moHi*SITE_CONFIG.usd_to_fcfa;
+    var cdfLo=moLo*SITE_CONFIG.usd_to_cdf; var cdfHi=moHi*SITE_CONFIG.usd_to_cdf;
     return {
       card: lo+'$–'+hi+'$/h',
       monthly:'<div class="salary-monthly-block">'
@@ -2019,7 +2021,7 @@ function buildSalaryDisplay(salaireRaw){
         +'<div class="salary-monthly-line">'
           +'<span class="salary-monthly-label">Salaire mensuel estimé</span>'
           +'<span class="salary-monthly-usd">'+formatUSD(usdLo)+' – '+formatUSD(usdHi)+' USD</span>'
-          +'<span class="salary-monthly-fcfa">≈ '+formatFCFA(fcfaLo)+' – '+formatFCFA(fcfaHi)+'</span>'
+          +'<span class="salary-monthly-cdf">≈ '+formatCDF(cdfLo)+' – '+formatCDF(cdfHi)+'</span>'
         +'</div>'
       +'</div>'
     };
@@ -2029,7 +2031,7 @@ function buildSalaryDisplay(salaireRaw){
   if(hourly2){
     var h=parseInt(hourly2[1],10);
     var mo=Math.round(h*40*52/12);
-    var fcfa=mo*SITE_CONFIG.usd_to_fcfa;
+    var cdf=mo*SITE_CONFIG.usd_to_cdf;
     var extra=salaireRaw.replace(hourly2[0],'').replace(/^\s*\+\s*/,'').trim();
     return {
       card: h+'$/h'+(extra?' +'+extra:''),
@@ -2038,7 +2040,7 @@ function buildSalaryDisplay(salaireRaw){
         +'<div class="salary-monthly-line">'
           +'<span class="salary-monthly-label">Salaire mensuel estimé</span>'
           +'<span class="salary-monthly-usd">'+formatUSD(mo)+' USD</span>'
-          +'<span class="salary-monthly-fcfa">≈ '+formatFCFA(fcfa)+'</span>'
+          +'<span class="salary-monthly-cdf">≈ '+formatCDF(cdf)+'</span>'
         +'</div>'
       +'</div>'
     };
@@ -2049,7 +2051,7 @@ function buildSalaryDisplay(salaireRaw){
     var alo=parseInt(annual[1].replace(/\s/g,''),10);
     var ahi=parseInt(annual[2].replace(/\s/g,''),10);
     var mlo=Math.round(alo/12); var mhi=Math.round(ahi/12);
-    var flo=mlo*SITE_CONFIG.usd_to_fcfa; var fhi=mhi*SITE_CONFIG.usd_to_fcfa;
+    var cdflo=mlo*SITE_CONFIG.usd_to_cdf; var cdfhi=mhi*SITE_CONFIG.usd_to_cdf;
     return {
       card: alo.toLocaleString('fr-FR')+'$–'+ahi.toLocaleString('fr-FR')+'$/an',
       monthly:'<div class="salary-monthly-block">'
@@ -2057,7 +2059,7 @@ function buildSalaryDisplay(salaireRaw){
         +'<div class="salary-monthly-line">'
           +'<span class="salary-monthly-label">Salaire mensuel</span>'
           +'<span class="salary-monthly-usd">'+formatUSD(mlo)+' – '+formatUSD(mhi)+' USD</span>'
-          +'<span class="salary-monthly-fcfa">≈ '+formatFCFA(flo)+' – '+formatFCFA(fhi)+'</span>'
+          +'<span class="salary-monthly-cdf">≈ '+formatCDF(cdflo)+' – '+formatCDF(cdfhi)+'</span>'
         +'</div>'
       +'</div>'
     };
